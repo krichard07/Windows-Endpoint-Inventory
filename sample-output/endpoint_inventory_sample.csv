@@ -1,0 +1,5 @@
+﻿"ComputerName","Status","ConnectionMethod","Windows","Version","Build","LegacyOS","LastBoot","UptimeDays","UptimeStatus","DiskSizeGB","FreeSpaceGB","FreeSpacePercent","DiskStatus","LastHotfix","LastHotfixDate","PendingSccmUpdates","SccmUpdateStatus","Error"
+"DEMO-PC-01","Online","WinRM","Microsoft Windows 11 Pro","10.0.26100","26100","NO","2026-09-20 08:15:00","7","OK","476.00","215.40","45.3","OK","KB0000001","2026-09-21","0","OK",""
+"DEMO-PC-02","Online","DCOM","Microsoft Windows 11 Pro","10.0.26100","26100","NO","2026-08-15 06:30:00","43","LONG","237.00","18.20","7.7","LOW","KB0000002","2026-09-18","2","PENDING",""
+"DEMO-PC-03","Online","WinRM","Microsoft Windows 7 Professional","6.1.7601","7601","YES","2026-09-22 10:00:00","5","OK","120.00","60.00","50.0","OK","KB0000003","2024-10-16","N/A","Legacy OS",""
+"DEMO-PC-04","Query failed","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","Synthetic connection failure example"

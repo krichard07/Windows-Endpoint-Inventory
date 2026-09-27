@@ -1,0 +1,8 @@
+computers.txt
+reports/
+endpoint_inventory.csv
+EndpointInventory_backup.ps1
+EndpointInventory.txt
+*.log
+.DS_Store
+
