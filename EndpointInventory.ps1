@@ -1,9 +1,54 @@
-$Computers = Get-Content ".\computers.txt" |
-    Where-Object { -not [string]::IsNullOrWhiteSpace($_) } |
-    ForEach-Object { $_.Trim() }
+<#
+.SYNOPSIS
+Collect inventory and basic health information from Windows endpoints.
 
-$LowDiskThresholdPercent = 10
-$LongUptimeThresholdDays = 30
+.DESCRIPTION
+Reads computer names from a text file and collects Windows version, build number, uptime, disk free space, latest installed hotfix and SCCM pending update information.
+
+The script uses WinRM first and falls back to DCOM if necessary.
+Results are exported to a timestamped CSV report.
+
+.PARAMETER ComputerListPath
+Path to the text file containing the computer names.
+Default: computers.txt in the script directory.
+
+.PARAMETER LowDiskThresholdPercent
+Free disk space percentage below which the disk status is marked as LOW.
+Default: 10.
+
+.PARAMETER LongUptimeThresholdDays
+Number of uptime days above which uptime status is marked as LONG.
+Default: 30.
+
+.EXAMPLE
+.\EndpointInventory.ps1
+
+Runs the script with the default settings.
+
+.EXAMPLE
+.\EndpointInventory.ps1 -LowDiskThresholdPercent 15 -LongUptimeThresholdDays 20
+
+Runs the script with custom disk space and uptime thresholds.
+
+.EXAMPLE
+.\EndpointInventory.ps1 -ComputerListPath ".\test-computers.txt"
+
+Uses a custom computer list file.
+#>
+
+param(
+	[string]$ComputerListPath = (Join-Path $PSScriptRoot "computers.txt"),
+
+	[ValidateRange(1, 100)]
+	[int]$LowDiskThresholdPercent = 10,
+
+	[ValidateRange(1, 365)]
+	[int]$LongUptimeThresholdDays = 30
+)
+
+$Computers = Get-Content $ComputerListPath |
+	Where-Object { -not [string]::IsNullOrWhiteSpace($_) } |
+	ForEach-Object { $_.Trim() }
 
 $Timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
 
